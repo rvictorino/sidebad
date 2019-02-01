@@ -1,0 +1,67 @@
+html, body {
+  width: 304px;
+}
+.add, .container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.text {
+  width: 80%;
+  padding: 5px;
+}
+.plus {
+  width: 20%;
+  padding: 5px;
+}
+
+#url, #add {
+  width: 100%;
+  background: none;
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 2px 3px;
+}
+#url:hover, #url:focus {
+  border-color: black;
+}
+#add {
+  text-align: center;
+}
+#add:hover {
+  color: white;
+  background-color: grey;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.score {
+  position: relative;
+}
+.score .overlay {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.score .overlay .delete {
+  background: white;
+  color: red;
+  border: 1px solid red;
+  border-radius: 2px;
+  padding: 2px 3px;
+  font-size: 4em;
+}
+
+.score:hover > .overlay {
+  display: flex;
+}
