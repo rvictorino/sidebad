@@ -33,6 +33,19 @@ html, body {
   color: white;
   background-color: grey;
 }
+#delete-all {
+  background: white;
+  color: red;
+  border: 1px solid red;
+  border-radius: 2px;
+  padding: 2px 3px;
+}
+
+.delete-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 button:hover {
   cursor: pointer;

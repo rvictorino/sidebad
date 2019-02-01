@@ -39,3 +39,8 @@ for(let i = 0; i < delBtn.length; i++) {
      scoreBoard.deleteByUrl(del.getAttribute('data-delete'));
    });
 }
+
+const delAllBtn = document.getElementById('delete-all');
+delAllBtn.addEventListener("click", () => {
+  scoreBoard.deleteAll();
+});

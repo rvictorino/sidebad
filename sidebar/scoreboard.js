@@ -25,6 +25,12 @@ class Scoreboard {
     this.show();
   }
 
+  deleteAll() {
+    this.scores = [];
+    this.save();
+    this.show(); 
+  }
+
   contains(score) {
     for(let currentScore of this.scores) {
       if(currentScore.url == score.url) {
