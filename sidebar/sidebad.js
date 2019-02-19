@@ -1,5 +1,5 @@
-import Scoreboard from './score.js';
-import Score from './scoreboard.js';
+import Score from './score.js';
+import Scoreboard from './scoreboard.js';
 
 const container = document.getElementById('container');
 
@@ -9,7 +9,7 @@ const save = localStorage.getItem('sidebad');
 if (save) {
   const obj = JSON.parse(save);
   for (let i = 0; i < obj.scores.length; i += 1) {
-    const score = obj.score[i];
+    const score = obj.scores[i];
     scoreBoard.scores.push(new Score('', score.url));
   }
 }

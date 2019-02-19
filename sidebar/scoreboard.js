@@ -7,7 +7,7 @@ export default class Scoreboard {
   }
 
   addIfNew(score) {
-    if (this.isValid(score) && !this.contains(score)) {
+    if (Scoreboard.isValid(score) && !this.contains(score)) {
       this.scores.push(score);
       this.save();
       this.showItem(score);
