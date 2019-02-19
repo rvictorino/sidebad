@@ -1,19 +1,20 @@
-
+import Scoreboard from './score.js';
+import Score from './scoreboard.js';
 
 const container = document.getElementById('container');
 
-let scoreBoard = new Scoreboard(container);
+const scoreBoard = new Scoreboard(container);
 
-let save = localStorage.getItem('sidebad');
-if(save) {
+const save = localStorage.getItem('sidebad');
+if (save) {
   const obj = JSON.parse(save);
-  for(let score of obj.scores) {
+  for (let i = 0; i < obj.scores.length; i += 1) {
+    const score = obj.score[i];
     scoreBoard.scores.push(new Score('', score.url));
   }
 }
 
 scoreBoard.show();
-
 
 
 const addBtn = document.getElementById('add');
@@ -29,11 +30,11 @@ addBtn.addEventListener('click', () => {
 });
 
 const delBtns = document.getElementsByClassName('delete');
-for(let i = 0; i < delBtns.length; i++) {
-   let del = delBtns.item(i);
-   del.addEventListener('click', () => {
-     scoreBoard.deleteByUrl(del.getAttribute('data-delete'));
-   });
+for (let i = 0; i < delBtns.length; i += 1) {
+  const del = delBtns.item(i);
+  del.addEventListener('click', () => {
+    scoreBoard.deleteByUrl(del.getAttribute('data-delete'));
+  });
 }
 
 const delAllBtn = document.getElementById('delete-all');

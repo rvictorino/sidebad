@@ -1,11 +1,12 @@
-class Score {
+import CONSTANTS from './constants.js';
+
+export default class Score {
   constructor(name, url) {
     this.name = name;
     this.url = new URL(url);
     this.iFrame = document.createElement('iframe');
     this.iFrame.setAttribute('src', this.url.href);
-    this.iFrame.height = ALLOWED_DOMAINS[this.url.hostname];
-    this.iFrame.onload = () => console.log(`${this.iFrame.contentWindow} loaded`);
+    this.iFrame.height = CONSTANTS.ALLOWED_DOMAINS[this.url.hostname];
   }
 
   getIFrame() {

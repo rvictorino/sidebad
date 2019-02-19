@@ -1,16 +1,13 @@
-const ALLOWED_DOMAINS = {
-  'scorbad.fr': null,
-  'bwf.tournamentsoftware.com': 580,
-};
+import CONSTANTS from './constants.js';
 
-class Scoreboard {
+export default class Scoreboard {
   constructor(parent) {
     this.parent = parent;
     this.scores = [];
   }
 
   addIfNew(score) {
-    if(this.isValid(score) && !this.contains(score)) {
+    if (this.isValid(score) && !this.contains(score)) {
       this.scores.push(score);
       this.save();
       this.showItem(score);
@@ -18,9 +15,9 @@ class Scoreboard {
   }
 
   deleteByUrl(url) {
-    for(let i = 0; i < this.scores.length; i++) {
-      let score = this.scores[i];
-      if(score.url.href == url) {
+    for (let i = 0; i < this.scores.length; i += 1) {
+      const score = this.scores[i];
+      if (score.url.href === url) {
         this.scores.splice(i, 1);
         break;
       }
@@ -36,16 +33,18 @@ class Scoreboard {
   }
 
   contains(score) {
-    for(let currentScore of this.scores) {
-      if(currentScore.url.href == score.url.href) {
+    for (let i = 0; i < this.scores.length; i += 1) {
+      const currentScore = this.scores[i];
+      if (currentScore.url.href === score.url.href) {
         return true;
       }
     }
     return false;
   }
 
-  isValid(score) {
-    return score.url && ALLOWED_DOMAINS.hasOwnProperty(score.url.hostname);
+  static isValid(score) {
+    return score.url
+      && Object.prototype.hasOwnProperty.call(CONSTANTS.ALLOWED_DOMAINS, score.url.hostname);
   }
 
   save() {
@@ -55,10 +54,11 @@ class Scoreboard {
   show() {
     // empty it if needed
     while (this.parent.firstChild) {
-        this.parent.removeChild(this.parent.firstChild);
+      this.parent.removeChild(this.parent.firstChild);
     }
     // fill with scores
-    for(let score of this.scores) {
+    for (let i = 0; i < this.scores.length; i += 1) {
+      const score = this.scores[i];
       this.showItem(score);
     }
   }
