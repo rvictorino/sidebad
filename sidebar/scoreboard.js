@@ -1,7 +1,11 @@
+const ALLOWED_DOMAINS = {
+  'scorbad.fr': null,
+  'bwf.tournamentsoftware.com': 580,
+};
+
 class Scoreboard {
-  constructor(parent, allowedDomains) {
+  constructor(parent) {
     this.parent = parent;
-    this.allowedDomains = allowedDomains;
     this.scores = [];
   }
 
@@ -16,7 +20,7 @@ class Scoreboard {
   deleteByUrl(url) {
     for(let i = 0; i < this.scores.length; i++) {
       let score = this.scores[i];
-      if(score.url == url) {
+      if(score.url.href == url) {
         this.scores.splice(i, 1);
         break;
       }
@@ -28,12 +32,12 @@ class Scoreboard {
   deleteAll() {
     this.scores = [];
     this.save();
-    this.show(); 
+    this.show();
   }
 
   contains(score) {
     for(let currentScore of this.scores) {
-      if(currentScore.url == score.url) {
+      if(currentScore.url.href == score.url.href) {
         return true;
       }
     }
@@ -41,7 +45,7 @@ class Scoreboard {
   }
 
   isValid(score) {
-    return score.url && this.allowedDomains.reduce((a, b) => a || score.url.startsWith("https://" + b), false);
+    return score.url && ALLOWED_DOMAINS.hasOwnProperty(score.url.hostname);
   }
 
   save() {
@@ -68,9 +72,9 @@ class Scoreboard {
 
     const delBtn = document.createElement('button');
     delBtn.setAttribute('class', 'delete');
-    delBtn.setAttribute('data-delete', score.url);
+    delBtn.setAttribute('data-delete', score.url.href);
 
-    const delText = document.createTextNode('Delete');
+    const delText = document.createTextNode('-');
     delBtn.appendChild(delText);
 
     overlay.appendChild(delBtn);

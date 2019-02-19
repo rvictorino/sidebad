@@ -1,46 +1,42 @@
-const allowedDomains = [
-  'scorbad.fr'
-];
+
 
 const container = document.getElementById('container');
 
-let scoreBoard;
+let scoreBoard = new Scoreboard(container);
 
 let save = localStorage.getItem('sidebad');
 if(save) {
   const obj = JSON.parse(save);
-  scoreBoard = new Scoreboard(container, obj.allowedDomains);
   for(let score of obj.scores) {
-    scoreBoard.scores.push(new Score("Test", score.url));
+    scoreBoard.scores.push(new Score('', score.url));
   }
-} else {
-  scoreBoard = new Scoreboard(container, allowedDomains);
 }
+
 scoreBoard.show();
 
 
 
 const addBtn = document.getElementById('add');
-addBtn.addEventListener("click", () => {
+addBtn.addEventListener('click', () => {
   const urlTxt = document.getElementById('url');
   const url = urlTxt.value;
 
-  const newScore = new Score("Test", url);
+  const newScore = new Score('', url);
 
   scoreBoard.addIfNew(newScore);
 
-  urlTxt.value = "";
+  urlTxt.value = '';
 });
 
-const delBtn = document.getElementsByClassName('delete');
-for(let i = 0; i < delBtn.length; i++) {
-   let del = delBtn.item(i);
-   del.addEventListener("click", () => {
+const delBtns = document.getElementsByClassName('delete');
+for(let i = 0; i < delBtns.length; i++) {
+   let del = delBtns.item(i);
+   del.addEventListener('click', () => {
      scoreBoard.deleteByUrl(del.getAttribute('data-delete'));
    });
 }
 
 const delAllBtn = document.getElementById('delete-all');
-delAllBtn.addEventListener("click", () => {
+delAllBtn.addEventListener('click', () => {
   scoreBoard.deleteAll();
 });
