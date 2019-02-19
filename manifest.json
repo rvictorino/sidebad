@@ -4,7 +4,7 @@
   "name": "Sidebad",
   "version": "1.2",
 
-  "description": "Keep your favorite live matches from scorebad.fr in sight with this sidebar!",
+  "description": "Keep your favorite live matches in sight with this sidebar! Works with scorebad.fr or bwf.tournamentsoftware.com.",
 
   "icons": {
     "48": "icons/sidebad-48.png"
